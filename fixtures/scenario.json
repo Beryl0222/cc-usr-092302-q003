@@ -1,0 +1,317 @@
+[
+  {
+    "event_id": "evt-0001",
+    "kind": "QUOTE_SNAPSHOTTED",
+    "occurred_at": "2026-09-20T10:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 1,
+    "actor": "SYSTEM",
+    "payload": {
+      "channel": "OTA",
+      "room_type": "豪华海景大床房",
+      "price": 1288.0,
+      "currency": "CNY",
+      "captured_at": "2026-09-20T10:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-0002",
+    "kind": "QUOTE_SNAPSHOTTED",
+    "occurred_at": "2026-09-20T10:05:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 2,
+    "actor": "SYSTEM",
+    "payload": {
+      "channel": "DIRECT",
+      "room_type": "豪华海景大床房",
+      "price": 1188.0,
+      "currency": "CNY",
+      "captured_at": "2026-09-20T10:05:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-0003",
+    "kind": "PLAN_FROZEN",
+    "occurred_at": "2026-09-21T09:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 3,
+    "actor": "CONSUMER",
+    "payload": {
+      "channel": "OTA",
+      "room_type": "豪华海景大床房",
+      "star_level": 5,
+      "facilities": ["海景阳台", "双人早餐", "免费取消"],
+      "package_items": ["两晚住宿", "接机服务", "半日游"],
+      "total_price": 1288.0,
+      "currency": "CNY"
+    }
+  },
+  {
+    "event_id": "evt-0004",
+    "kind": "CONTRACT_PUBLISHED",
+    "occurred_at": "2026-09-21T09:01:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 4,
+    "actor": "PLATFORM",
+    "payload": {
+      "contract_version": 1,
+      "clauses_digest": "sha256:contract-v1"
+    }
+  },
+  {
+    "event_id": "evt-0005",
+    "kind": "PAYMENT_RECORDED",
+    "occurred_at": "2026-09-21T09:05:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 5,
+    "actor": "CONSUMER",
+    "payload": {
+      "payment_id": "PAY-0001",
+      "amount": 1288.0,
+      "currency": "CNY",
+      "method": "ALIPAY"
+    }
+  },
+  {
+    "event_id": "evt-0006",
+    "kind": "PRICE_CHANGED",
+    "occurred_at": "2026-09-25T08:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 6,
+    "actor": "PLATFORM",
+    "payload": {
+      "channel": "OTA",
+      "room_type": "豪华海景大床房",
+      "old_price": 1288.0,
+      "new_price": 1188.0,
+      "actor": "PLATFORM_AUTO"
+    }
+  },
+  {
+    "event_id": "evt-0007",
+    "kind": "PRICE_CHANGED",
+    "occurred_at": "2026-09-28T20:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 7,
+    "actor": "MERCHANT",
+    "payload": {
+      "channel": "OTA",
+      "room_type": "豪华海景大床房",
+      "old_price": 1188.0,
+      "new_price": 1588.0,
+      "actor": "MERCHANT_MANUAL"
+    }
+  },
+  {
+    "event_id": "evt-0008",
+    "kind": "PRICE_APPEAL_FILED",
+    "occurred_at": "2026-09-29T09:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 8,
+    "actor": "CONSUMER",
+    "payload": {
+      "appeal_id": "APL-0001",
+      "claimed_difference": 300.0,
+      "currency": "CNY"
+    }
+  },
+  {
+    "event_id": "evt-0009",
+    "kind": "CHECKIN_RECORDED",
+    "occurred_at": "2026-10-01T15:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 9,
+    "actor": "CONSUMER",
+    "payload": {
+      "actual_room_type": "城景标准房",
+      "actual_star_level": 3,
+      "facilities_observed": ["无阳台", "无早餐"]
+    }
+  },
+  {
+    "event_id": "evt-0010",
+    "kind": "ROOM_DOWNGRADED",
+    "occurred_at": "2026-10-01T15:30:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 10,
+    "actor": "CONSUMER",
+    "payload": {
+      "promised_room_type": "豪华海景大床房",
+      "actual_room_type": "城景标准房",
+      "promised_star_level": 5,
+      "actual_star_level": 3
+    }
+  },
+  {
+    "event_id": "evt-0011",
+    "kind": "PARTY_ACTION_RECORDED",
+    "occurred_at": "2026-10-01T16:00:00+08:00",
+    "subject_id": "ORD-2026-1001",
+    "version": 11,
+    "actor": "MERCHANT",
+    "payload": {
+      "party": "MERCHANT",
+      "action": "强制换房",
+      "detail": "以满房为由将预订房型替换为低星级房型"
+    }
+  },
+  {
+    "event_id": "evt-0101",
+    "kind": "EVIDENCE_REGISTERED",
+    "occurred_at": "2026-09-20T10:01:00+08:00",
+    "subject_id": "MAT-SCREENSHOT-001",
+    "version": 1,
+    "actor": "CONSUMER",
+    "payload": {
+      "material_type": "SCREENSHOT",
+      "title": "OTA 报价截图",
+      "sensitivity": "PROTECTED",
+      "origin": {
+        "method": "SCREENSHOT",
+        "captured_at": "2026-09-20T10:00:30+08:00",
+        "device": "consumer-phone",
+        "account": "consumer-ota-account"
+      },
+      "hash": "ac3cb4c61f935742b3f046f6ea7aaf8ea6f32eb53702383b72931b35d1c9c3c8",
+      "submitted": true
+    }
+  },
+  {
+    "event_id": "evt-0102",
+    "kind": "EVIDENCE_REGISTERED",
+    "occurred_at": "2026-09-21T09:02:00+08:00",
+    "subject_id": "MAT-CONTRACT-001",
+    "version": 1,
+    "actor": "PLATFORM",
+    "payload": {
+      "material_type": "CONTRACT",
+      "title": "电子合同 v1",
+      "sensitivity": "CONFIDENTIAL",
+      "origin": {
+        "method": "UPLOAD",
+        "captured_at": "2026-09-21T09:01:30+08:00",
+        "account": "platform-contract-service"
+      },
+      "hash": "7434ccd5821d471b05acbbaa07d232775a29015bd4f346ea8b23e61653465146",
+      "submitted": true
+    }
+  },
+  {
+    "event_id": "evt-0103",
+    "kind": "EVIDENCE_REGISTERED",
+    "occurred_at": "2026-10-01T15:05:00+08:00",
+    "subject_id": "MAT-PHOTO-001",
+    "version": 1,
+    "actor": "CONSUMER",
+    "payload": {
+      "material_type": "PHOTO",
+      "title": "入住现场照片",
+      "sensitivity": "PUBLIC",
+      "origin": {
+        "method": "CAMERA",
+        "captured_at": "2026-10-01T15:04:00+08:00",
+        "device": "consumer-phone"
+      },
+      "hash": "5871f601084d12c6dd32231e250aabaaca3bbb430be8fb76a26a58fe425a7ce9",
+      "submitted": false
+    }
+  },
+  {
+    "event_id": "evt-0104",
+    "kind": "EVIDENCE_VERSION_ADDED",
+    "occurred_at": "2026-10-01T15:20:00+08:00",
+    "subject_id": "MAT-PHOTO-001",
+    "version": 2,
+    "actor": "CONSUMER",
+    "payload": {
+      "hash": "c4607ebe8330892113d7717a2cf51b33144193484eeca96b977f3edd981611d7"
+    }
+  },
+  {
+    "event_id": "evt-0105",
+    "kind": "EVIDENCE_SUBMITTED",
+    "occurred_at": "2026-10-01T15:25:00+08:00",
+    "subject_id": "MAT-PHOTO-001",
+    "version": 3,
+    "actor": "CONSUMER",
+    "payload": {}
+  },
+  {
+    "event_id": "evt-0106",
+    "kind": "EVIDENCE_REGISTERED",
+    "occurred_at": "2026-09-28T20:05:00+08:00",
+    "subject_id": "MAT-CHAT-001",
+    "version": 1,
+    "actor": "CONSUMER",
+    "payload": {
+      "material_type": "CHAT_LOG",
+      "title": "商家承诺聊天记录",
+      "sensitivity": "PROTECTED",
+      "origin": {
+        "method": "SCREENSHOT",
+        "captured_at": "2026-09-28T20:04:00+08:00",
+        "account": "consumer-ota-account"
+      },
+      "hash": "f5ec7b56ab976f2dc8658e230493e4b4493bf5e8ae0af24e9117c4593ac2ea1c",
+      "submitted": false
+    }
+  },
+  {
+    "event_id": "evt-0107",
+    "kind": "EVIDENCE_WITHDRAWN",
+    "occurred_at": "2026-09-30T10:00:00+08:00",
+    "subject_id": "MAT-CHAT-001",
+    "version": 2,
+    "actor": "CONSUMER",
+    "payload": {}
+  },
+  {
+    "event_id": "evt-0201",
+    "kind": "COMPLAINT_FILED",
+    "occurred_at": "2026-10-02T09:00:00+08:00",
+    "subject_id": "CASE-2026-0001",
+    "version": 1,
+    "actor": "CONSUMER",
+    "payload": {
+      "order_id": "ORD-2026-1001",
+      "consumer_alias": "王女士",
+      "claims": ["商家临近入住加价", "房型降标", "要求退还差价并赔偿"]
+    }
+  },
+  {
+    "event_id": "evt-0202",
+    "kind": "EVIDENCE_DOCKETED",
+    "occurred_at": "2026-10-02T09:05:00+08:00",
+    "subject_id": "MAT-SCREENSHOT-001",
+    "version": 2,
+    "actor": "PLATFORM",
+    "payload": {
+      "docket_id": "CASE-2026-0001"
+    }
+  },
+  {
+    "event_id": "evt-0203",
+    "kind": "MEDIATION_RESULT_RECORDED",
+    "occurred_at": "2026-10-05T14:00:00+08:00",
+    "subject_id": "CASE-2026-0001",
+    "version": 2,
+    "actor": "MEDIATOR",
+    "payload": {
+      "outcome": "商家退还差价并补偿",
+      "compensation": 600.0,
+      "currency": "CNY"
+    }
+  },
+  {
+    "event_id": "evt-0204",
+    "kind": "REGULATORY_REFERRAL_MADE",
+    "occurred_at": "2026-10-08T10:00:00+08:00",
+    "subject_id": "CASE-2026-0001",
+    "version": 3,
+    "actor": "REGULATOR",
+    "payload": {
+      "authority": "市市场监督管理局",
+      "docket_id": "REG-2026-888"
+    }
+  }
+]

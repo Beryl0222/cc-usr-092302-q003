@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "履约取证事件信封",
   "type": "object",
   "required": [
     "event_id",
@@ -9,19 +11,57 @@
   ],
   "properties": {
     "event_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "description": "全局唯一事件标识；重复 event_id 且内容一致视为重复投递，内容不一致必须拒绝"
     },
     "kind": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "QUOTE_SNAPSHOTTED",
+        "PLAN_FROZEN",
+        "CONTRACT_PUBLISHED",
+        "PAYMENT_RECORDED",
+        "PRICE_CHANGED",
+        "POLICY_UPDATED",
+        "CHECKIN_RECORDED",
+        "ROOM_DOWNGRADED",
+        "STAY_REFUSED",
+        "ORDER_CANCELLED",
+        "PRICE_APPEAL_FILED",
+        "PARTY_ACTION_RECORDED",
+        "COMPLAINT_FILED",
+        "MEDIATION_RESULT_RECORDED",
+        "REGULATORY_REFERRAL_MADE",
+        "EVIDENCE_REGISTERED",
+        "EVIDENCE_VERSION_ADDED",
+        "EVIDENCE_SUBMITTED",
+        "EVIDENCE_WITHDRAWN",
+        "EVIDENCE_DOCKETED"
+      ]
     },
     "occurred_at": {
-      "type": "string"
+      "type": "string",
+      "format": "date-time",
+      "description": "事件发生时间（ISO 8601，必须带时区）；回放按此排序，与写入先后无关"
     },
     "subject_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1,
+      "description": "事件主体：订单事件为 order_id，案件事件为 case_id，材料事件为 material_id"
     },
     "version": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1,
+      "description": "主体流内序号；补充材料与合同修订只能递增版本，不得改写历史"
+    },
+    "actor": {
+      "type": "string",
+      "enum": ["CONSUMER", "MERCHANT", "PLATFORM", "MEDIATOR", "REGULATOR", "SYSTEM"]
+    },
+    "payload": {
+      "type": "object",
+      "description": "各事件类型的必填字段与取值域以 src/contract.py 为权威定义"
     }
   }
 }
