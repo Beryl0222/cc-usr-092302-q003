@@ -1,0 +1,451 @@
+{
+  "case_ref": "CASE-20261001-007",
+  "order_subject_id": "O-20261001-1001",
+  "consumer_pii": {
+    "name": "林小满",
+    "phone": "13800001234",
+    "id_card": "11010119900101001X"
+  },
+  "_note": "批量导入时 version 由存储按 subject_id 顺序分配；乱序以 occurred_at 重排。事件按三段时间线分区。",
+  "order_events": [
+    {
+      "event_id": "EV-001-QUOTE-PLATFORM",
+      "kind": "QUOTE_CAPTURED",
+      "occurred_at": "2026-09-22T09:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "channel": "PLATFORM",
+        "quote_ref": "Q-PLAT-880",
+        "room_type": "豪华海景大床房",
+        "price_amount": 880.0,
+        "currency": "CNY",
+        "captured_at": "2026-09-22T09:00:00+08:00",
+        "facilities": [
+          "无边泳池",
+          "双早",
+          "正海景",
+          "免费接机"
+        ],
+        "source_evidence_id": "EV-SHOT-01",
+        "raw_hash": "sha256:24d5b7af3e77f22779e5d4ca17b84edbcf27f079675585e12a55e43b6e6293f1"
+      }
+    },
+    {
+      "event_id": "EV-002-QUOTE-OTA",
+      "kind": "QUOTE_CAPTURED",
+      "occurred_at": "2026-09-22T09:05:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "channel": "OTA_A",
+        "quote_ref": "Q-OTA-850",
+        "room_type": "豪华海景大床房",
+        "price_amount": 850.0,
+        "currency": "CNY",
+        "captured_at": "2026-09-22T09:05:00+08:00",
+        "facilities": [
+          "无边泳池",
+          "双早",
+          "正海景"
+        ]
+      }
+    },
+    {
+      "event_id": "EV-003-FROZEN",
+      "kind": "QUOTE_FROZEN",
+      "occurred_at": "2026-09-22T09:30:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "quote_ref": "Q-PLAT-880",
+        "order_ref": "O-20261001-1001"
+      }
+    },
+    {
+      "event_id": "EV-004-PROMISE",
+      "kind": "ROOM_PROMISED",
+      "occurred_at": "2026-09-22T09:31:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "promise_ref": "RM-PROMISE-1",
+        "room_type": "豪华海景大床房",
+        "star_class": 5,
+        "facilities": [
+          "无边泳池",
+          "双早",
+          "正海景",
+          "免费接机"
+        ],
+        "source_evidence_id": "EV-SHOT-01"
+      }
+    },
+    {
+      "event_id": "EV-005-PACKAGE",
+      "kind": "PACKAGE_SPLIT",
+      "occurred_at": "2026-09-22T09:32:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "package_ref": "PKG-HOLIDAY-1",
+        "components": [
+          "房费",
+          "双早",
+          "免费接机"
+        ]
+      }
+    },
+    {
+      "event_id": "EV-006-POLICY-V1",
+      "kind": "CANCELLATION_POLICY",
+      "occurred_at": "2026-09-22T09:33:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "policy_version": "CP-1",
+        "rules": {
+          "free_cancel_before_hours": 72,
+          "late_fee_ratio": 0.3
+        },
+        "effective_at": "2026-09-22T09:33:00+08:00"
+      }
+    },
+    {
+      "event_id": "EV-007-CONTRACT-V1",
+      "kind": "CONTRACT_VERSION",
+      "occurred_at": "2026-09-22T09:40:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "contract_ref": "CT-1001",
+        "doc_version": 1,
+        "terms": {
+          "price_locked": true,
+          "room_type": "豪华海景大床房",
+          "star_class": 5
+        },
+        "source_evidence_id": "EV-CONTRACT-01"
+      }
+    },
+    {
+      "event_id": "EV-008-PAY",
+      "kind": "PAYMENT",
+      "occurred_at": "2026-09-22T09:45:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "amount": 880.0,
+        "currency": "CNY",
+        "paid_at": "2026-09-22T09:45:00+08:00",
+        "method": "PLATFORM_WALLET",
+        "receipt_evidence_id": "EV-RECEIPT-01"
+      }
+    },
+    {
+      "event_id": "EV-009-AUTOMATCH",
+      "kind": "PRICE_CHANGED",
+      "occurred_at": "2026-09-25T10:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "quote_ref": "Q-PLAT-880",
+        "old_price_amount": 880.0,
+        "new_price_amount": 860.0,
+        "change_type": "AUTO_MATCH",
+        "actor": "PLATFORM_AUTO",
+        "reason": "平台系统自动跟价竞对 OTA_A 850 元档"
+      }
+    },
+    {
+      "event_id": "EV-010-CONTRACT-V2",
+      "kind": "CONTRACT_VERSION",
+      "occurred_at": "2026-09-30T18:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "contract_ref": "CT-1001",
+        "doc_version": 2,
+        "supersedes_doc_version": 1,
+        "terms": {
+          "price_locked": false,
+          "remark": "商家节前推送的新版本，消费者未确认"
+        },
+        "source_evidence_id": "EV-CONTRACT-01"
+      }
+    },
+    {
+      "event_id": "EV-011-MANUAL-MARKUP",
+      "kind": "PRICE_CHANGED",
+      "occurred_at": "2026-09-30T20:10:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "quote_ref": "Q-PLAT-880",
+        "old_price_amount": 860.0,
+        "new_price_amount": 1180.0,
+        "change_type": "MANUAL",
+        "actor": "MERCHANT",
+        "reason": "商家微信通知节假日房源紧张，到店需每间每晚加价 300，否则无房",
+        "receipt_evidence_id": "EV-CHAT-01"
+      }
+    },
+    {
+      "event_id": "EV-012-MERCHANT-NO-ROOM",
+      "kind": "MERCHANT_ACTION",
+      "occurred_at": "2026-10-01T14:40:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "action": "DEMAND_MARKUP_OR_CANCEL",
+        "acted_at": "2026-10-01T14:40:00+08:00",
+        "note": "前台声称原房型无房，建议加价升级或改住副楼",
+        "evidence_id": "EV-CHAT-01"
+      }
+    },
+    {
+      "event_id": "EV-013-CHECKIN",
+      "kind": "CHECKIN_REPORTED",
+      "occurred_at": "2026-10-01T15:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "reported_at": "2026-10-01T15:00:00+08:00",
+        "fulfillment_state": "DOWNGRADED",
+        "actual_room_type": "园景标准间",
+        "actual_star_class": 3,
+        "actual_facilities": [
+          "双早"
+        ],
+        "note": "被安排至副楼园景标准间，无海景、无泳池权益、未接机",
+        "evidence_id": "EV-PHOTO-01"
+      }
+    },
+    {
+      "event_id": "EV-014-PLATFORM-LOG",
+      "kind": "PLATFORM_ACTION",
+      "occurred_at": "2026-10-01T16:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "action": "APPEAL_ACKNOWLEDGED",
+        "acted_at": "2026-10-01T16:00:00+08:00",
+        "actor": "PLATFORM_STAFF",
+        "note": "客服建单并冻结商家结算款"
+      }
+    },
+    {
+      "event_id": "EV-015-REFUND",
+      "kind": "PAYMENT_REFUND",
+      "occurred_at": "2026-10-05T12:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "amount": 300.0,
+        "currency": "CNY",
+        "refunded_at": "2026-10-05T12:00:00+08:00",
+        "method": "PLATFORM_WALLET",
+        "reason": "调解后平台先行赔付差价"
+      }
+    }
+  ],
+  "evidence_events": [
+    {
+      "event_id": "EV-E1-SHOT-UPLOAD",
+      "kind": "EVIDENCE_UPLOADED",
+      "occurred_at": "2026-09-22T09:01:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_id": "EV-SHOT-01",
+        "evidence_type": "SCREENSHOT",
+        "source": "consumer_app_capture",
+        "raw_hash": "sha256:24d5b7af3e77f22779e5d4ca17b84edbcf27f079675585e12a55e43b6e6293f1",
+        "filename": "listing_880.png",
+        "sensitivity": "PUBLIC",
+        "state": "SUBMITTED"
+      }
+    },
+    {
+      "event_id": "EV-E2-CHAT-UPLOAD",
+      "kind": "EVIDENCE_UPLOADED",
+      "occurred_at": "2026-09-30T20:15:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_id": "EV-CHAT-01",
+        "evidence_type": "CHAT_LOG",
+        "source": "wechat_export",
+        "raw_hash": "sha256:3ed76b88311385ec88ed2d6b12a0ebb85a0252e69914bc2ecaa73c365d949d62",
+        "filename": "merchant_markup_chat.txt",
+        "sensitivity": "INTERNAL",
+        "field_tags": {
+          "merchant_phone": "RESTRICTED"
+        },
+        "state": "SUBMITTED"
+      }
+    },
+    {
+      "event_id": "EV-E3-CONTRACT-UPLOAD",
+      "kind": "EVIDENCE_UPLOADED",
+      "occurred_at": "2026-09-22T09:39:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_id": "EV-CONTRACT-01",
+        "evidence_type": "CONTRACT",
+        "source": "platform_esign_vault",
+        "raw_hash": "sha256:7d8572c96f11482f683a26a510468afddba653dedb2d2469cdb17bb0835b7628",
+        "filename": "contract_v1.pdf",
+        "sensitivity": "INTERNAL",
+        "state": "SUBMITTED"
+      }
+    },
+    {
+      "event_id": "EV-E4-CONTRACT-V2",
+      "kind": "EVIDENCE_RESUBMITTED",
+      "occurred_at": "2026-09-30T18:01:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_ref": "EV-CONTRACT-01",
+        "doc_version": 2,
+        "source": "platform_esign_vault",
+        "raw_hash": "sha256:540a576ba43fb6af904e1f65b1b11e7aaa0b774f1928e4209f1675041112accf",
+        "filename": "contract_v2.pdf",
+        "sensitivity": "INTERNAL",
+        "note": "商家节前推送版本，作为版本 2 追加"
+      }
+    },
+    {
+      "event_id": "EV-E5-PHOTO-UPLOAD",
+      "kind": "EVIDENCE_UPLOADED",
+      "occurred_at": "2026-10-01T15:05:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_id": "EV-PHOTO-01",
+        "evidence_type": "PHOTO",
+        "source": "consumer_app_capture",
+        "raw_hash": "sha256:d90abffce87559bf51b5f0acc480a591f2c0a59e4cd7045e1254891ac059287e",
+        "filename": "annex_garden_room.jpg",
+        "sensitivity": "PUBLIC",
+        "state": "SUBMITTED"
+      }
+    },
+    {
+      "event_id": "EV-E6-AUDIO-DRAFT",
+      "kind": "EVIDENCE_UPLOADED",
+      "occurred_at": "2026-10-01T15:10:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_id": "EV-AUDIO-DRAFT",
+        "evidence_type": "AUDIO",
+        "source": "consumer_app_capture",
+        "raw_hash": "sha256:6f69d63232fe0efd4307b15d8c1eca3e034970a3bc7e4c668f859b7e5a4cf882",
+        "filename": "front_desk_draft.m4a",
+        "sensitivity": "RESTRICTED",
+        "state": "DRAFT"
+      }
+    },
+    {
+      "event_id": "EV-E7-AUDIO-WITHDRAW",
+      "kind": "EVIDENCE_WITHDRAWN",
+      "occurred_at": "2026-10-01T15:20:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_ref": "EV-AUDIO-DRAFT",
+        "reason": "录音录错，消费者在提交前撤回"
+      }
+    },
+    {
+      "event_id": "EV-E8-CHAT-HELD",
+      "kind": "EVIDENCE_HELD",
+      "occurred_at": "2026-10-02T09:00:00+08:00",
+      "subject_id": "O-20261001-1001",
+      "version": 1,
+      "payload": {
+        "evidence_ref": "EV-CHAT-01",
+        "case_ref": "CASE-20261001-007",
+        "held_at": "2026-10-02T09:00:00+08:00",
+        "docket": "12315-2026-1002-77",
+        "authority": "市市场监督管理局文旅监管科"
+      }
+    }
+  ],
+  "case_events": [
+    {
+      "event_id": "EV-C1-APPEAL",
+      "kind": "PRICE_APPEAL",
+      "occurred_at": "2026-10-01T16:10:00+08:00",
+      "subject_id": "CASE-20261001-007",
+      "version": 1,
+      "payload": {
+        "appeal_ref": "APL-77",
+        "quote_ref": "Q-PLAT-880",
+        "expected_amount": 860.0,
+        "claimed_amount": 1180.0,
+        "reason": "生效报价被商家手工加价 320 元，且房型由 5 星海景降为 3 星园景",
+        "opened_at": "2026-10-01T16:10:00+08:00"
+      }
+    },
+    {
+      "event_id": "EV-C2-CASE-OPEN",
+      "kind": "CASE_OPENED",
+      "occurred_at": "2026-10-01T16:15:00+08:00",
+      "subject_id": "CASE-20261001-007",
+      "version": 1,
+      "payload": {
+        "case_ref": "CASE-20261001-007",
+        "opened_at": "2026-10-01T16:15:00+08:00",
+        "appeal_ref": "APL-77",
+        "order_subject_id": "O-20261001-1001",
+        "summary": "节假日临近入住商家毁约加价并降标，平台自动跟价与商家手工加价需区分责任"
+      }
+    },
+    {
+      "event_id": "EV-C3-MEDIATION",
+      "kind": "CASE_MEDIATION",
+      "occurred_at": "2026-10-03T10:30:00+08:00",
+      "subject_id": "CASE-20261001-007",
+      "version": 1,
+      "payload": {
+        "case_ref": "CASE-20261001-007",
+        "mediated_at": "2026-10-03T10:30:00+08:00",
+        "outcome": "PARTIAL_AWARD",
+        "award_amount": 300.0,
+        "currency": "CNY",
+        "note": "平台先行赔付 300 元差价；降标赔偿未达成一致"
+      }
+    },
+    {
+      "event_id": "EV-C4-REFERRAL",
+      "kind": "CASE_REFERRAL",
+      "occurred_at": "2026-10-04T11:00:00+08:00",
+      "subject_id": "CASE-20261001-007",
+      "version": 1,
+      "payload": {
+        "case_ref": "CASE-20261001-007",
+        "referred_at": "2026-10-04T11:00:00+08:00",
+        "authority": "市市场监督管理局文旅监管科",
+        "docket": "12315-2026-1002-77",
+        "reason": "商家涉嫌利用节假日单方加价且拒不履行星级承诺，调解未果部分移交"
+      }
+    },
+    {
+      "event_id": "EV-C5-CLOSE",
+      "kind": "CASE_CLOSED",
+      "occurred_at": "2026-10-06T17:00:00+08:00",
+      "subject_id": "CASE-20261001-007",
+      "version": 1,
+      "payload": {
+        "case_ref": "CASE-20261001-007",
+        "closed_at": "2026-10-06T17:00:00+08:00",
+        "resolution": "PLATFORM_COMPENSATED_AND_REGULATOR_INVESTIGATING",
+        "note": "差价部分平台赔付结清；降标部分随监管卷宗继续调查，相关证据留置"
+      }
+    }
+  ]
+}

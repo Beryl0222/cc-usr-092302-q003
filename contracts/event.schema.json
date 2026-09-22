@@ -1,27 +1,41 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HotelBookingEvidenceEvent",
+  "description": "订单履约取证事件信封。逐 kind 的载荷字段以 src/catalog.py 的 PAYLOAD_SPEC 为准（validate_event 执行完整校验）。",
   "type": "object",
-  "required": [
-    "event_id",
-    "kind",
-    "occurred_at",
-    "subject_id",
-    "version"
-  ],
+  "required": ["event_id", "kind", "occurred_at", "subject_id", "version"],
+  "additionalProperties": false,
   "properties": {
-    "event_id": {
-      "type": "string"
-    },
+    "event_id": {"type": "string", "minLength": 1},
     "kind": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "QUOTE_CAPTURED",
+        "QUOTE_FROZEN",
+        "PRICE_CHANGED",
+        "ROOM_PROMISED",
+        "PACKAGE_SPLIT",
+        "CONTRACT_VERSION",
+        "PAYMENT",
+        "PAYMENT_REFUND",
+        "CANCELLATION_POLICY",
+        "CHECKIN_REPORTED",
+        "MERCHANT_ACTION",
+        "PLATFORM_ACTION",
+        "EVIDENCE_UPLOADED",
+        "EVIDENCE_RESUBMITTED",
+        "EVIDENCE_WITHDRAWN",
+        "EVIDENCE_HELD",
+        "PRICE_APPEAL",
+        "CASE_OPENED",
+        "CASE_MEDIATION",
+        "CASE_REFERRAL",
+        "CASE_CLOSED"
+      ]
     },
-    "occurred_at": {
-      "type": "string"
-    },
-    "subject_id": {
-      "type": "string"
-    },
-    "version": {
-      "type": "integer"
-    }
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "subject_id": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "minimum": 1},
+    "payload": {"type": "object"}
   }
 }
